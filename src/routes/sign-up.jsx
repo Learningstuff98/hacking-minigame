@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
-function SignUp() {
+function SignUp(props) {
   const navigate = useNavigate();
   const [usernameInput, setUsernameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [confirmPaswordInput, setConfirmPasswordInput] = useState('');
 
-  const submit = (formData) => {
-    //setUser(formData);
-    console.log(formData);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if(usernameInput.length > 0) {
-      submit({
+      props.setUser({
         username: usernameInput,
         email: emailInput,
         password: passwordInput
