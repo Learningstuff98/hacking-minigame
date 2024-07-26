@@ -1,40 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
-function SignUp(props) {
+function LogIn(props) {
   const navigate = useNavigate();
-  const [usernameInput, setUsernameInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  const [confirmPaswordInput, setConfirmPasswordInput] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(usernameInput.length > 0) {
-      props.setUser({
-        username: usernameInput,
-        email: emailInput,
-        password: passwordInput
-      });
-      props.setLoggedInUser({
-        username: usernameInput,
-        email: emailInput,
-        password: passwordInput
-      });
+    if(passwordInput === props.user.password) {
+      props.setLoggedInUser(props.user);
       navigate('/');
     } else {
-      alert("Input can't be blank");
+      alert("incorrect password");
     }
-  };
-
-  const usernameInputElement = () => {
-    return <input
-      type="text"
-      placeholder="Username"
-      size="30"
-      value={usernameInput}
-      onChange={e => setUsernameInput(e.target.value)}
-    />
   };
 
   const emailInputElement = () => {
@@ -57,16 +36,6 @@ function SignUp(props) {
     />
   };
 
-  const confirmPasswordElement = () => {
-    return <input
-      type="text"
-      placeholder="Confirm Password"
-      size="30"
-      value={confirmPaswordInput}
-      onChange={e => setConfirmPasswordInput(e.target.value)}
-    />
-  };
-
   const submitButton = () => {
     return <input
       type="submit"
@@ -76,13 +45,9 @@ function SignUp(props) {
 
   return <h2>
     <form onSubmit={handleSubmit}>
-      {usernameInputElement()}
-      <br/><br/>
       {emailInputElement()}
       <br/><br/>
       {passwordInputElement()}
-      <br/><br/>
-      {confirmPasswordElement()}
       <br/><br/>
       {submitButton()}
       <br/><br/>
@@ -91,4 +56,4 @@ function SignUp(props) {
   </h2>
 }
 
-export default SignUp;
+export default LogIn;

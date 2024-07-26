@@ -6,14 +6,19 @@ import Root from './routes/root';
 import ErrorPage from './routes/error-page';
 import AboutPage from './routes/about';
 import SignUp from './routes/sign-up';
+import LogIn from './routes/log-in';
 
 function Main() {
   const [user, setUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root user={user} setUser={setUser}/>,
+      element: <Root
+        loggedInUser={loggedInUser}
+        setLoggedInUser={setLoggedInUser}
+      />,
       errorElement: <ErrorPage/>
     },
     {
@@ -22,7 +27,18 @@ function Main() {
     },
     {
       path: "/sign-up",
-      element: <SignUp setUser={setUser}/>
+      element: <SignUp
+        setUser={setUser}
+        setLoggedInUser={setLoggedInUser}
+      />
+    },
+    {
+      path: "/log-in",
+      element: <LogIn
+        user={user}
+        setLoggedInUser={setLoggedInUser}
+      />,
+      errorElement: <ErrorPage/>
     }
   ]);
 
