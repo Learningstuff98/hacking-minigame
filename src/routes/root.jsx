@@ -6,8 +6,8 @@ function Root(props) {
       <h2>
         Hello {props.loggedInUser.username} and welcome to my hacking minigame project thats inspired from the
         one in the Fallout games!
-        <div><Link to={'about'}>About page</Link></div>
         <div onClick={() => props.setLoggedInUser(null)}>Log out</div>
+        <div><Link to={'about'}>About page</Link></div>
       </h2>
     </div>
   } else {

@@ -74,21 +74,28 @@ function SignUp(props) {
     />
   };
 
-  return <h2>
-    <form onSubmit={handleSubmit}>
-      {usernameInputElement()}
-      <br/><br/>
-      {emailInputElement()}
-      <br/><br/>
-      {passwordInputElement()}
-      <br/><br/>
-      {confirmPasswordElement()}
-      <br/><br/>
-      {submitButton()}
-      <br/><br/>
+  if(!props.loggedInUser) {
+    return <h2>
+      <form onSubmit={handleSubmit}>
+        {usernameInputElement()}
+        <br/><br/>
+        {emailInputElement()}
+        <br/><br/>
+        {passwordInputElement()}
+        <br/><br/>
+        {confirmPasswordElement()}
+        <br/><br/>
+        {submitButton()}
+        <br/><br/>
+        <div><Link to={'/'}>Home page</Link></div>
+      </form>
+    </h2>
+  } else {
+    return <h2 className="green">
+      A user is already logged in.
       <div><Link to={'/'}>Home page</Link></div>
-    </form>
-  </h2>
+    </h2>
+  }
 }
 
 export default SignUp;

@@ -43,17 +43,24 @@ function LogIn(props) {
     />
   };
 
-  return <h2>
-    <form onSubmit={handleSubmit}>
-      {emailInputElement()}
-      <br/><br/>
-      {passwordInputElement()}
-      <br/><br/>
-      {submitButton()}
-      <br/><br/>
+  if(!props.loggedInUser) {
+    return <h2>
+      <form onSubmit={handleSubmit}>
+        {emailInputElement()}
+        <br/><br/>
+        {passwordInputElement()}
+        <br/><br/>
+        {submitButton()}
+        <br/><br/>
+        <div><Link to={'/'}>Home page</Link></div>
+      </form>
+    </h2>
+  } else {
+    return <h2 className="green">
+      A user is already logged in.
       <div><Link to={'/'}>Home page</Link></div>
-    </form>
-  </h2>
+    </h2>
+  }
 }
 
 export default LogIn;

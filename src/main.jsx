@@ -23,19 +23,23 @@ function Main() {
     },
     {
       path: '/about',
-      element: <AboutPage/>
+      element: <AboutPage/>,
+      errorElement: <ErrorPage/>
     },
     {
       path: "/sign-up",
       element: <SignUp
         setUser={setUser}
         setLoggedInUser={setLoggedInUser}
-      />
+        loggedInUser={loggedInUser}
+      />,
+      errorElement: <ErrorPage/>
     },
     {
       path: "/log-in",
       element: <LogIn
         user={user}
+        loggedInUser={loggedInUser}
         setLoggedInUser={setLoggedInUser}
       />,
       errorElement: <ErrorPage/>
