@@ -11,16 +11,13 @@ function SignUp(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(usernameInput.length > 0) {
-      props.setUser({
+      const user = {
         username: usernameInput,
         email: emailInput,
         password: passwordInput
-      });
-      props.setLoggedInUser({
-        username: usernameInput,
-        email: emailInput,
-        password: passwordInput
-      });
+      };
+      props.setUser(user);
+      props.setLoggedInUser(user);
       navigate('/');
     } else {
       alert("Input can't be blank");
@@ -31,7 +28,7 @@ function SignUp(props) {
     return <input
       type="text"
       placeholder="Username"
-      size="30"
+      className="form-input-style"
       value={usernameInput}
       onChange={e => setUsernameInput(e.target.value)}
     />
@@ -41,7 +38,7 @@ function SignUp(props) {
     return <input
       type="text"
       placeholder="Email"
-      size="30"
+      className="form-input-style"
       value={emailInput}
       onChange={e => setEmailInput(e.target.value)}
     />
@@ -51,7 +48,7 @@ function SignUp(props) {
     return <input
       type="text"
       placeholder="Password"
-      size="30"
+      className="form-input-style"
       value={passwordInput}
       onChange={e => setPasswordInput(e.target.value)}
     />
@@ -61,7 +58,7 @@ function SignUp(props) {
     return <input
       type="text"
       placeholder="Confirm Password"
-      size="30"
+      className="form-input-style"
       value={confirmPaswordInput}
       onChange={e => setConfirmPasswordInput(e.target.value)}
     />
@@ -71,25 +68,26 @@ function SignUp(props) {
     return <input
       type="submit"
       value="Submit"
+      className="form-button"
     />
   };
 
   if(!props.loggedInUser) {
-    return <h2>
+    return <h3 className="box">
       <form onSubmit={handleSubmit}>
-        {usernameInputElement()}
-        <br/><br/>
-        {emailInputElement()}
-        <br/><br/>
-        {passwordInputElement()}
-        <br/><br/>
-        {confirmPasswordElement()}
-        <br/><br/>
-        {submitButton()}
-        <br/><br/>
-        <div><Link to={'/'}>Home page</Link></div>
+        <div className="green">username</div>
+        <div className="form-element-spacing">{usernameInputElement()}</div>
+        <div className="green">email</div>
+        <div className="form-element-spacing">{emailInputElement()}</div>
+        <div className="green">password</div>
+        <div className="form-element-spacing">{passwordInputElement()}</div>
+        <div className="green">confirm password</div>
+        <div className="form-element-spacing">{confirmPasswordElement()}</div>
+        <div className="form-element-spacing">{submitButton()}</div>
+        <div className="form-element-spacing"><Link className="green" to={'/log-in'}>Log In</Link></div>
+        <div><Link className="green" to={'/'}>Home page</Link></div>
       </form>
-    </h2>
+    </h3>
   } else {
     return <h2 className="green">
       A user is already logged in.

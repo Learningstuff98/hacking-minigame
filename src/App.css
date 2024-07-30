@@ -15,6 +15,7 @@ body {
   margin: auto;
   text-align: center;
   margin-top: 40px;
+  padding: 15px;
 }
 
 .link-spacing {
@@ -25,4 +26,27 @@ body {
   text-decoration: underline;
   cursor: pointer;
   display: inline-block;
+}
+
+.form-element-spacing {
+  margin: 12px;
+}
+
+.form-input-style {
+  width: 30vw;
+}
+
+.form-button {
+  background-color: #0d6efd;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+  color: white;
+  padding: 5px;
+  width: 65px;
+}
+
+.form-button:hover {
+  background-color: #0046af;
 }
