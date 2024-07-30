@@ -6,3 +6,23 @@ body {
 .green {
   color: #00C122;
 }
+
+.box {
+  border: 2px solid;
+  border-color: #00C122;
+  width: 50vw;
+  border-radius: 10px;
+  margin: auto;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.link-spacing {
+  margin: 8px;
+}
+
+.log-out-button {
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+}
