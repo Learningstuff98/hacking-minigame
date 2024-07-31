@@ -7,6 +7,7 @@ import ErrorPage from './routes/error-page';
 import AboutPage from './routes/about';
 import SignUp from './routes/sign-up';
 import LogIn from './routes/log-in';
+import Header from './misc/header';
 
 function Main() {
   const [user, setUser] = useState(null);
@@ -15,33 +16,45 @@ function Main() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root
-        loggedInUser={loggedInUser}
-        setLoggedInUser={setLoggedInUser}
-      />,
+      element: <div>
+        <Header/>
+        <Root
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+        />
+      </div>,
       errorElement: <ErrorPage/>
     },
     {
       path: '/about',
-      element: <AboutPage/>,
+      element: <div>
+        <Header/>
+        <AboutPage/>
+      </div>,
       errorElement: <ErrorPage/>
     },
     {
       path: "/sign-up",
-      element: <SignUp
-        setUser={setUser}
-        setLoggedInUser={setLoggedInUser}
-        loggedInUser={loggedInUser}
-      />,
+      element: <div>
+        <Header/>
+        <SignUp
+          setUser={setUser}
+          setLoggedInUser={setLoggedInUser}
+          loggedInUser={loggedInUser}
+        />
+      </div>,
       errorElement: <ErrorPage/>
     },
     {
       path: "/log-in",
-      element: <LogIn
-        user={user}
-        loggedInUser={loggedInUser}
-        setLoggedInUser={setLoggedInUser}
-      />,
+      element: <div>
+        <Header/>
+        <LogIn
+          user={user}
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+        />
+      </div>,
       errorElement: <ErrorPage/>
     }
   ]);
