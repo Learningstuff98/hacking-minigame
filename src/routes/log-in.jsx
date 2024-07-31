@@ -20,7 +20,7 @@ function LogIn(props) {
     return <input
       type="text"
       placeholder="Email"
-      size="30"
+      className="form-input-style"
       value={emailInput}
       onChange={e => setEmailInput(e.target.value)}
     />
@@ -30,7 +30,7 @@ function LogIn(props) {
     return <input
       type="text"
       placeholder="Password"
-      size="30"
+      className="form-input-style"
       value={passwordInput}
       onChange={e => setPasswordInput(e.target.value)}
     />
@@ -39,22 +39,23 @@ function LogIn(props) {
   const submitButton = () => {
     return <input
       type="submit"
-      value="Submit"
+      value="Log in"
+      className="form-button"
     />
   };
 
   if(!props.loggedInUser) {
-    return <h2>
+    return <h3 className="box">
       <form onSubmit={handleSubmit}>
-        {emailInputElement()}
-        <br/><br/>
-        {passwordInputElement()}
-        <br/><br/>
-        {submitButton()}
-        <br/><br/>
-        <div><Link to={'/'}>Home page</Link></div>
+        <div className="green">email</div>
+        <div className="form-element-spacing">{emailInputElement()}</div>
+        <div className="green">password</div>
+        <div className="form-element-spacing">{passwordInputElement()}</div>
+        <div className="form-element-spacing">{submitButton()}</div>
+        <div className="form-element-spacing"><Link className="green" to={'/sign-up'}>Sign Up</Link></div>
+        <div><Link className="green" to={'/'}>Home page</Link></div>
       </form>
-    </h2>
+    </h3>
   } else {
     return <h2 className="green">
       A user is already logged in.

@@ -67,7 +67,7 @@ function SignUp(props) {
   const submitButton = () => {
     return <input
       type="submit"
-      value="Submit"
+      value="Sign up"
       className="form-button"
     />
   };
