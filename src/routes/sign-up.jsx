@@ -9,38 +9,49 @@ function SignUp(props) {
   const [confirmPaswordInput, setConfirmPasswordInput] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
 
-  function renderValidationsErrors() {
-    return <div>
-      {validationErrors.map((validationError, index) => {
-        return <div className="red form-element-spacing" key={index}>
-          {validationError}
-        </div>
-      })}
-    </div>
-  }
-
   function blankInputs() {
     return usernameInput === '' ||
     emailInput === '' ||
     passwordInput === '' ||
     confirmPaswordInput === '';
+  };
+
+  function passwordInputsMatch() {
+    return passwordInput === confirmPaswordInput;
+  };
+
+  function formIsValid() {
+    return !blankInputs() && passwordInputsMatch();
   }
+
+  function makeUser() {
+    const user = {
+      username: usernameInput,
+      email: emailInput,
+      password: passwordInput
+    };
+    props.setUser(user);
+    props.setLoggedInUser(user);
+  };
+
+  function createValidationErrors() {
+    let newValidationErrors = [];
+    if(blankInputs()) {
+      newValidationErrors.push("Inputs can't be blank");
+    }
+    if(!passwordInputsMatch()) {
+      newValidationErrors.push("Password and confirm password fields must match");
+    }
+    setValidationErrors(newValidationErrors);
+  };
 
   const submit = (e) => {
     e.preventDefault();
-    if(!blankInputs()) {
-      const user = {
-        username: usernameInput,
-        email: emailInput,
-        password: passwordInput
-      };
-      props.setUser(user);
-      props.setLoggedInUser(user);
+    if(formIsValid()) {
+      makeUser();
       navigate('/');
     } else {
-      let newValidationErrors = [];
-      newValidationErrors.push("no blank inputs allowd");
-      setValidationErrors(newValidationErrors);
+      createValidationErrors();
     }
   };
 
@@ -92,9 +103,19 @@ function SignUp(props) {
     />
   };
 
+  function renderValidationErrors() {
+    return <div>
+      {validationErrors.map((validationError, index) => {
+        return <div className="red form-element-spacing" key={index}>
+          {validationError}
+        </div>
+      })}
+    </div>
+  };
+
   if(!props.loggedInUser) {
     return <h3 className="box">
-      {renderValidationsErrors()}
+      {renderValidationErrors()}
       <form onSubmit={submit}>
         <div className="green">username</div>
         <div className="form-element-spacing">{usernameInputElement()}</div>
@@ -115,6 +136,6 @@ function SignUp(props) {
       <div><Link to={'/'}>Home page</Link></div>
     </h2>
   }
-}
+};
 
 export default SignUp;
