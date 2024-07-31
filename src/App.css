@@ -7,6 +7,10 @@ body {
   color: #00C122;
 }
 
+.red {
+  color: red;
+}
+
 .box {
   border: 2px solid;
   border-color: #00C122;

@@ -7,10 +7,28 @@ function SignUp(props) {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [confirmPaswordInput, setConfirmPasswordInput] = useState('');
+  const [validationErrors, setValidationErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+  function renderValidationsErrors() {
+    return <div>
+      {validationErrors.map((validationError, index) => {
+        return <div className="red form-element-spacing" key={index}>
+          {validationError}
+        </div>
+      })}
+    </div>
+  }
+
+  function blankInputs() {
+    return usernameInput === '' ||
+    emailInput === '' ||
+    passwordInput === '' ||
+    confirmPaswordInput === '';
+  }
+
+  const submit = (e) => {
     e.preventDefault();
-    if(usernameInput.length > 0) {
+    if(!blankInputs()) {
       const user = {
         username: usernameInput,
         email: emailInput,
@@ -20,7 +38,9 @@ function SignUp(props) {
       props.setLoggedInUser(user);
       navigate('/');
     } else {
-      alert("Input can't be blank");
+      let newValidationErrors = [];
+      newValidationErrors.push("no blank inputs allowd");
+      setValidationErrors(newValidationErrors);
     }
   };
 
@@ -74,7 +94,8 @@ function SignUp(props) {
 
   if(!props.loggedInUser) {
     return <h3 className="box">
-      <form onSubmit={handleSubmit}>
+      {renderValidationsErrors()}
+      <form onSubmit={submit}>
         <div className="green">username</div>
         <div className="form-element-spacing">{usernameInputElement()}</div>
         <div className="green">email</div>
