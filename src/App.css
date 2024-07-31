@@ -50,3 +50,7 @@ body {
 .form-button:hover {
   background-color: #0046af;
 }
+
+.page-content {
+  margin-left: 20px;
+}
