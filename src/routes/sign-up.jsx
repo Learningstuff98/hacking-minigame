@@ -20,9 +20,15 @@ function SignUp(props) {
     return passwordInput === confirmPaswordInput;
   };
 
+  function passwordIsValidLength() {
+    return passwordInput.length >= 8 && passwordInput.length <= 20;
+  };
+
   function formIsValid() {
-    return !blankInputs() && passwordInputsMatch();
-  }
+    return !blankInputs() &&
+    passwordInputsMatch() &&
+    passwordIsValidLength();
+  };
 
   function makeUser() {
     const user = {
@@ -41,6 +47,9 @@ function SignUp(props) {
     }
     if(!passwordInputsMatch()) {
       newValidationErrors.push("Password and confirm password fields must match");
+    }
+    if(!passwordIsValidLength()) {
+      newValidationErrors.push("Password must be between 8 and 20 characters");
     }
     setValidationErrors(newValidationErrors);
   };
