@@ -165,9 +165,8 @@ function SignUp(props) {
       </form>
     </h3>
   } else {
-    return <h2 className="green">
-      A user is already logged in.
-      <div><Link to={'/'}>Home page</Link></div>
+    return <h2 className="page-content">
+      <div><Link className="green" to={'/'}>Home page</Link></div>
     </h2>
   }
 };
