@@ -24,10 +24,21 @@ function SignUp(props) {
     return passwordInput.length >= 8 && passwordInput.length <= 20;
   };
 
+  function passwordHasANumber() {
+    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    for(const number in numbers) {
+      if(passwordInput.includes(number)) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   function formIsValid() {
     return !blankInputs() &&
     passwordInputsMatch() &&
-    passwordIsValidLength();
+    passwordIsValidLength() &&
+    passwordHasANumber();
   };
 
   function makeUser() {
@@ -50,6 +61,9 @@ function SignUp(props) {
     }
     if(!passwordIsValidLength()) {
       newValidationErrors.push("Password must be between 8 and 20 characters");
+    }
+    if(!passwordHasANumber()) {
+      newValidationErrors.push("Password must contain at least one number character");
     }
     setValidationErrors(newValidationErrors);
   };
