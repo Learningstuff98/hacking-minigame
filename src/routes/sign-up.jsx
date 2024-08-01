@@ -34,11 +34,19 @@ function SignUp(props) {
     return false;
   };
 
+  function emailIsValid() {
+    // https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+    return emailInput.match(
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    );
+  };
+
   function formIsValid() {
     return !blankInputs() &&
     passwordInputsMatch() &&
     passwordIsValidLength() &&
-    passwordHasANumber();
+    passwordHasANumber() &&
+    emailIsValid();
   };
 
   function makeUser() {
@@ -64,6 +72,9 @@ function SignUp(props) {
     }
     if(!passwordHasANumber()) {
       newValidationErrors.push("Password must contain at least one number character");
+    }
+    if(!emailIsValid()) {
+      newValidationErrors.push("Email is not valid");
     }
     setValidationErrors(newValidationErrors);
   };
