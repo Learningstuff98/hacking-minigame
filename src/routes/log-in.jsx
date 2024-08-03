@@ -5,16 +5,28 @@ function LogIn(props) {
   const navigate = useNavigate();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
+  const [validationErrors, setValidationErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(passwordInput === props.user.password) {
+    if(passwordInput === props.user.password && emailInput === props.user.email) {
       props.setLoggedInUser(props.user);
       navigate('/');
     } else {
-      alert("incorrect password");
+      createValidationErrors();
     }
   };
+
+  function createValidationErrors() {
+    let newValidationErrors = [];
+    if(passwordInput !== props.user.password) {
+      newValidationErrors.push("Incorrect password");
+    }
+    if(emailInput !== props.user.email) {
+      newValidationErrors.push("Incorrect email");
+    }
+    setValidationErrors(newValidationErrors);
+  }
 
   const emailInputElement = () => {
     return <input
@@ -44,8 +56,19 @@ function LogIn(props) {
     />
   };
 
-  if(!props.loggedInUser) {
+  function renderValidationErrors() {
+    return <div>
+      {validationErrors.map((validationError, index) => {
+        return <div className="red form-element-spacing" key={index}>
+          {validationError}
+        </div>
+      })}
+    </div>
+  };
+
+  if(props.user && !props.loggedInUser) {
     return <h3 className="box">
+      {renderValidationErrors()}
       <form onSubmit={handleSubmit}>
         <div className="green">email</div>
         <div className="form-element-spacing">{emailInputElement()}</div>
@@ -57,9 +80,8 @@ function LogIn(props) {
       </form>
     </h3>
   } else {
-    return <h2 className="green">
-      A user is already logged in.
-      <div><Link to={'/'}>Home page</Link></div>
+    return <h2 className="page-content">
+      <div><Link className="green" to={'/'}>Home page</Link></div>
     </h2>
   }
 }
