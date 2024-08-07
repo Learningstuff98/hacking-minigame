@@ -12,9 +12,9 @@ function Root(props) {
     }
   }
 
-  return <div className="green box">
+  return <div className="box">
     {handleUserFlowButton()}
-    <h2 className="link-spacing"><Link className="green" to={'about'}>About page</Link></h2>
+    <h2><Link className="green" to={'about'}>About page</Link></h2>
   </div>
 }
 

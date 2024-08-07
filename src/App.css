@@ -7,10 +7,6 @@ body {
   color: #00C122;
 }
 
-.red {
-  color: red;
-}
-
 .box {
   border: 2px solid;
   border-color: #00C122;
@@ -22,25 +18,7 @@ body {
   padding: 15px;
 }
 
-.link-spacing {
-  margin: 8px;
-}
-
-.log-out-button {
-  text-decoration: underline;
-  cursor: pointer;
-  display: inline-block;
-}
-
-.form-element-spacing {
-  margin: 12px;
-}
-
-.form-input-style {
-  width: 30vw;
-}
-
-.form-button {
+.user-flow-button {
   background-color: #0d6efd;
   border: none;
   cursor: pointer;
@@ -51,10 +29,34 @@ body {
   width: 65px;
 }
 
-.form-button:hover {
+.user-flow-button:hover {
   background-color: #0046af;
 }
 
 .page-content {
   margin-left: 20px;
+}
+
+.header-background-color {
+  background-color: rgb(20, 20, 20);
+}
+
+.header {
+  max-width: 100%;
+  margin-top: 0;
+  padding: 10px;
+}
+
+.profile-picture {
+  height: 25px;
+  border-radius: 15px;
+  float: right;
+}
+
+.profile-picture:hover {
+  cursor: pointer;
+}
+
+.logged-in-user-name {
+  float: right;
 }

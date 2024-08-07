@@ -26,10 +26,11 @@ function Main() {
     {
       path: "/",
       element: <div>
-        <Header/>
+        <Header
+          loggedInUser={loggedInUser}
+        />
         <Root
           loggedInUser={loggedInUser}
-          setLoggedInUser={setLoggedInUser}
         />
       </div>,
       errorElement: <ErrorPage/>
@@ -37,7 +38,9 @@ function Main() {
     {
       path: '/about',
       element: <div>
-        <Header/>
+        <Header
+          loggedInUser={loggedInUser}
+        />
         <AboutPage/>
       </div>,
       errorElement: <ErrorPage/>
