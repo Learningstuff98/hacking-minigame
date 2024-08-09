@@ -18,45 +18,51 @@ body {
   padding: 15px;
 }
 
-.user-flow-button {
-  background-color: #0d6efd;
-  border: none;
+.log-in-button {
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 13px;
-  color: white;
-  padding: 5px;
-  width: 65px;
+  text-decoration: underline;
 }
 
-.user-flow-button:hover {
-  background-color: #0046af;
+.log-out-button {
+  cursor: pointer;
+}
+
+.log-out-button:hover {
+  background-color: rgb(75, 75, 75);
 }
 
 .page-content {
   margin-left: 20px;
 }
 
-.header-background-color {
-  background-color: rgb(20, 20, 20);
-}
-
 .header {
   max-width: 100%;
   margin-top: 0;
   padding: 10px;
+  background-color: rgb(20, 20, 20);
+}
+
+.header-profile-link {
+  float: right;
 }
 
 .profile-picture {
   height: 25px;
   border-radius: 15px;
-  float: right;
 }
 
 .profile-picture:hover {
   cursor: pointer;
 }
 
-.logged-in-user-name {
+.drop-down-menu-box {
+  border: 1.5px solid;
+  border-color: #00C122;
+  width: 150px;
+  height: 50px;
   float: right;
+  margin: 15px;
+  border-radius: 7px;
+  padding: 7px;
+  background-color: rgb(20, 20, 20);
 }

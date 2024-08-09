@@ -1,26 +1,39 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 function Header(props) {
-
-  // if the user isn't logged in, render a log in button
-
-  // if the user is logged in, render the profile picture and the logout button
-
-  // fix the profile picture render bug
-  // return <img className="profile-picture" src={props.loggedInUser.picture}/>;
+  const [showDropDownUserMenu, setShowDropDownUserMenu] = useState(false);
 
   function handleUserDisplayInfo() {
     if(props.loggedInUser) {
-      return <div className="logged-in-user-name">
-        {`Logged in as ${props.loggedInUser.name}`}
+      return <div onClick={() => setShowDropDownUserMenu(!showDropDownUserMenu)}>
+        <img className="profile-picture" src={props.loggedInUser.picture}/>
+      </div>
+    } else {
+      return <LoginButton/>
+    }
+  }
+
+  function dropDownMenu() {
+    if(showDropDownUserMenu) {
+      return <div className="green drop-down-menu-box">
+        {props.loggedInUser.name}
+        <LogoutButton/>
       </div>
     }
   }
 
-  return <h3 className="green header header-background-color">
-    <Link className="green" to={'/'}>Home page</Link>
-    {handleUserDisplayInfo()}
-  </h3>  
+  return <div>
+    <h3 className="green header">
+      <Link className="green" to={'/'}>Home page</Link>
+      <div className="header-profile-link">
+        {handleUserDisplayInfo()}
+      </div>
+    </h3>
+    {dropDownMenu()}
+  </div>  
 }
 
 export default Header;

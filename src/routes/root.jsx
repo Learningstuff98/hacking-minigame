@@ -1,19 +1,7 @@
 import { Link } from 'react-router-dom';
-import LoginButton from '../misc/LoginButton';
-import LogoutButton from '../misc/LogoutButton';
 
-function Root(props) {
-
-  function handleUserFlowButton() {
-    if(props.loggedInUser) {
-      return <LogoutButton/>;
-    } else {
-      return <LoginButton/>;
-    }
-  }
-
+function Root() {
   return <div className="box">
-    {handleUserFlowButton()}
     <h2><Link className="green" to={'about'}>About page</Link></h2>
   </div>
 }
