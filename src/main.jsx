@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
 import { useAuth0 } from "@auth0/auth0-react";
 import './App.css'
 import Root from './routes/root';
@@ -17,10 +15,7 @@ const Main = () => {
     if(user) {
       setLoggedInUser(user);
     }
-    if(loggedInUser) {
-      console.log(`The user is ${JSON.stringify(loggedInUser)}`);
-    }
-  });
+  }, [user]);
 
   const router = createBrowserRouter([
     {
@@ -50,14 +45,4 @@ const Main = () => {
   </React.StrictMode>
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <Auth0Provider
-    domain="dev-fm0qde2b5sqd52na.us.auth0.com"
-    clientId="C5DZ3F0HgJp9KRoUFKmoVa1TYKLmg4rR"
-    authorizationParams={{
-      redirect_uri: window.location.origin
-    }}
-  >
-    <Main/>
-  </Auth0Provider>
-);
+export default Main;
