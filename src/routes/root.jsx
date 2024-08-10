@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Root() {
+const Root = () => {
   return <div className="box">
     <h2><Link className="green" to={'about'}>About page</Link></h2>
   </div>

@@ -1,4 +1,4 @@
-function AboutPage() {
+const AboutPage = () => {
   return <div className="green page-content">
     <h2>
       Hello and welcome to my hacking minigame project thats inspired from the

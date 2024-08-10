@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
-function Header(props) {
+const Header = (props) => {
   const [showDropDownUserMenu, setShowDropDownUserMenu] = useState(false);
 
-  function handleUserDisplayInfo() {
+  const handleUserDisplayInfo = () => {
     if(props.loggedInUser) {
       return <div onClick={() => setShowDropDownUserMenu(!showDropDownUserMenu)}>
         <img className="profile-picture" src={props.loggedInUser.picture}/>
@@ -16,7 +16,7 @@ function Header(props) {
     }
   }
 
-  function dropDownMenu() {
+  const dropDownMenu = () => {
     if(showDropDownUserMenu) {
       return <div className="green drop-down-menu-box">
         {props.loggedInUser.name}

@@ -9,7 +9,7 @@ import ErrorPage from './routes/error-page';
 import AboutPage from './routes/about';
 import Header from './misc/header';
 
-function Main() {
+const Main = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [loggedInUser, setLoggedInUser] = useState(null);
 
