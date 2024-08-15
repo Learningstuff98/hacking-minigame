@@ -7,19 +7,21 @@ const Header = (props) => {
   const [showDropDownUserMenu, setShowDropDownUserMenu] = useState(false);
 
   const handleUserDisplayInfo = () => {
-    if(props.loggedInUser) {
-      return <div onClick={() => setShowDropDownUserMenu(!showDropDownUserMenu)}>
-        <img className="profile-picture" src={props.loggedInUser.picture}/>
-      </div>
-    } else {
-      return <LoginButton/>
+    if(!props.isLoading) {
+      if(props.isAuthenticated) {
+        return <div onClick={() => setShowDropDownUserMenu(!showDropDownUserMenu)}>
+          <img className="profile-picture" src={props.user.picture}/>
+        </div>
+      } else {
+        return <LoginButton/>
+      }
     }
   }
 
   const dropDownMenu = () => {
-    if(showDropDownUserMenu) {
+    if(props.isAuthenticated && showDropDownUserMenu) {
       return <div className="green drop-down-menu-box">
-        {props.loggedInUser.name}
+        {props.user.name}
         <LogoutButton/>
       </div>
     }

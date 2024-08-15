@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import './App.css'
@@ -9,20 +9,15 @@ import Header from './misc/header';
 
 const Main = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [loggedInUser, setLoggedInUser] = useState(null);
-
-  useEffect(() => {
-    if(user) {
-      setLoggedInUser(user);
-    }
-  }, [user]);
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <div>
         <Header
-          loggedInUser={loggedInUser}
+          user={user}
+          isLoading={isLoading}
+          isAuthenticated={isAuthenticated}
         />
         <Root/>
       </div>,
@@ -32,7 +27,9 @@ const Main = () => {
       path: '/about',
       element: <div>
         <Header
-          loggedInUser={loggedInUser}
+          user={user}
+          isLoading={isLoading}
+          isAuthenticated={isAuthenticated}
         />
         <AboutPage/>
       </div>,
