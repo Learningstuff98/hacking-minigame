@@ -68,3 +68,12 @@ body {
   position: absolute;
   right: 0;
 }
+
+.game-screen-border {
+  border: 2px solid;
+  border-color: #00C122;
+  border-radius: 3vw;
+  height: 40vw;
+  width: 70vw;
+  margin: auto;
+}

@@ -1,7 +1,9 @@
 const Game = (props) => {
 
   if(props.isAuthenticated) {
-    return <h2 className="green">Game</h2>
+    return <div className="game-screen-border">
+
+    </div>
   } else {
     return <h2 className="green">
       You must be logged in to play.
