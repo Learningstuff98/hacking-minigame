@@ -76,4 +76,9 @@ body {
   height: 40vw;
   width: 70vw;
   margin: auto;
+  padding: 1vw;
+}
+
+.text-wall {
+  display: inline-block;
 }
