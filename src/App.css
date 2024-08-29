@@ -81,6 +81,7 @@ body {
 
 .text-wall {
   display: inline-block;
+  cursor: pointer;
 }
 
 .text-wall-spacing {
@@ -89,13 +90,14 @@ body {
 }
 
 .text-char {
-  display: inline-block;
-  width: 15px;
+  float: right;
+  width: 1.5vw;
+  height: 1.8vw;
+  font-size: 1.5vw;
   text-align: center;
 }
 
 .text-char:hover {
-  background-color: green;
+  background-color: #00C122;
   color: rgb(36, 36, 36);
-  cursor: pointer;
 }
