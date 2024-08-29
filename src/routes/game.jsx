@@ -1,4 +1,14 @@
+import { useState, useEffect } from 'react';
+
 const Game = (props) => {
+  const [leftTextWall, setLeftTextWall] = useState(null);
+  const [rightTextWall, setRightTextWall] = useState(null);
+
+  useEffect(() => {
+    setLeftTextWall(textWall());
+    setRightTextWall(textWall());
+  }, []);
+
   const textChars = [
     '<',
     '>',
@@ -18,16 +28,16 @@ const Game = (props) => {
     ')'
   ]
 
-  const getRandomIndex = (max) => {
+  const getRandomIndex = (maxIndex) => {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-    return Math.floor(Math.random() * max);
+    return Math.floor(Math.random() * maxIndex);
   }
 
   const textRow = () => {
     let textRow = [];
     for(let i = 1; i <= 12; i++) {
       textRow.push(
-        <div className="text-char">
+        <div className="text-char" key={i}>
           {textChars[getRandomIndex(15)]}
         </div>
       );
@@ -35,7 +45,7 @@ const Game = (props) => {
     return textRow;
   }
 
-  const renderTextWall = () => {
+  const textWall = () => {
     let textRows = [];
     for(let i = 1; i <= 17; i++) {
       textRows.push(
@@ -49,9 +59,9 @@ const Game = (props) => {
 
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
-      <div className="text-wall">{renderTextWall()}</div>
+      <div className="text-wall">{leftTextWall}</div>
       <div className="text-wall-spacing"></div>
-      <div className="text-wall">{renderTextWall()}</div>
+      <div className="text-wall">{rightTextWall}</div>
     </div>
   } else {
     return <h2 className="green">
