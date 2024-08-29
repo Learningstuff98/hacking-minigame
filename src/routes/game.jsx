@@ -18,17 +18,21 @@ const Game = (props) => {
     ')'
   ]
 
-  const getRandomInt = (max) => {
+  const getRandomIndex = (max) => {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     return Math.floor(Math.random() * max);
   }
 
-  const renderTextRow = () => {
-    let textRow = ''.split('');
+  const textRow = () => {
+    let textRow = [];
     for(let i = 1; i <= 12; i++) {
-      textRow.push(textChars[getRandomInt(15)]);
+      textRow.push(
+        <div className="text-char">
+          {textChars[getRandomIndex(15)]}
+        </div>
+      );
     }
-    return textRow.join('');
+    return textRow;
   }
 
   const renderTextWall = () => {
@@ -36,7 +40,7 @@ const Game = (props) => {
     for(let i = 1; i <= 17; i++) {
       textRows.push(
         <div key={i}>
-          {renderTextRow()}
+          {textRow()}
         </div>
       );
     }
@@ -46,6 +50,7 @@ const Game = (props) => {
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
       <div className="text-wall">{renderTextWall()}</div>
+      <div className="text-wall-spacing"></div>
       <div className="text-wall">{renderTextWall()}</div>
     </div>
   } else {
