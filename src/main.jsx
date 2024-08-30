@@ -47,6 +47,7 @@ const Main = () => {
           isAuthenticated={isAuthenticated}
         />
         <Game
+          isLoading={isLoading}
           isAuthenticated={isAuthenticated}
         />
       </div>

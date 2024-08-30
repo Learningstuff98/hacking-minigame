@@ -72,7 +72,7 @@ const Game = (props) => {
         {textWall(204, 407)}
       </div>
     </div>
-  } else {
+  } else if(!props.isLoading) {
     return <h2 className="green">
       You must be logged in to play.
     </h2>
