@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 
 const Game = (props) => {
-  const [leftTextWall, setLeftTextWall] = useState(null);
-  const [rightTextWall, setRightTextWall] = useState(null);
+  const [textChars, setTextChars] = useState("");
 
   useEffect(() => {
-    setLeftTextWall(textWall());
-    setRightTextWall(textWall());
-  }, []);
+    const interval = setInterval(() => {
+      setTextChars(
+        `${textChars}${possibleTextChars[getRandomIndex(15)]}`
+      );
+    }, 1000);
+    return () => clearInterval(interval);
+  });
 
-  const textChars = [
+  const possibleTextChars = [
     '<',
     '>',
     '[',
@@ -33,35 +36,17 @@ const Game = (props) => {
     return Math.floor(Math.random() * maxIndex);
   }
 
-  const textRow = () => {
-    let textRow = [];
-    for(let i = 1; i <= 12; i++) {
-      textRow.push(
-        <div className="text-char" key={i}>
-          {textChars[getRandomIndex(15)]}
-        </div>
-      );
-    }
-    return textRow;
-  }
-
-  const textWall = () => {
-    let textRows = [];
-    for(let i = 1; i <= 17; i++) {
-      textRows.push(
-        <div key={i}>
-          {textRow()}
-        </div>
-      );
-    }
-    return textRows;
-  }
+  const renderTextChars = () => {
+    return textChars.split('').map((textChar, index) => {
+      return <div className="green text-char" key={index}>
+        {textChar}
+      </div>
+    });
+  };
 
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
-      <div className="text-wall">{leftTextWall}</div>
-      <div className="text-wall-spacing"></div>
-      <div className="text-wall">{rightTextWall}</div>
+      {renderTextChars()}
     </div>
   } else {
     return <h2 className="green">
