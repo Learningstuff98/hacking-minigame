@@ -84,7 +84,7 @@ body {
   cursor: pointer;
 }
 
-.text-wall-spacing {
+.text-wall-divider {
   display: inline-block;
   width: 30px;
 }
