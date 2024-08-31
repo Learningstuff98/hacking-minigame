@@ -79,9 +79,15 @@ body {
   padding: 1vw;
 }
 
-.text-wall {
+.first-text-wall {
   display: inline-block;
   cursor: pointer;
+}
+
+.second-text-wall {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
 }
 
 .text-wall-divider {

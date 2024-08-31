@@ -41,11 +41,13 @@ const Game = (props) => {
   const textRow = (start, end) => {
     let row = [];
     for(let i = start; i < end; i++) {
-      row.push(
-        <div className="text-char" key={i}>
-          {textChars[i]}
-        </div>
-      );
+      if(textChars[i]) {
+        row.push(
+          <div className="text-char" key={i}>
+            {textChars[i]}
+          </div>
+        );
+      }
     }
     return row;
   };
@@ -64,11 +66,11 @@ const Game = (props) => {
 
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
-      <div className="text-wall">
+      <div className="first-text-wall">
         {textWall(0, 203)}
       </div>
       <div className="text-wall-divider"></div>
-      <div className="text-wall">
+      <div className="second-text-wall">
         {textWall(204, 407)}
       </div>
     </div>
