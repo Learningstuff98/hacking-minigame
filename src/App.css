@@ -68,3 +68,42 @@ body {
   position: absolute;
   right: 0;
 }
+
+.game-screen-border {
+  border: 2px solid;
+  border-color: #00C122;
+  border-radius: 3vw;
+  height: 40vw;
+  width: 70vw;
+  margin: auto;
+  padding: 1vw;
+}
+
+.first-text-wall {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.second-text-wall {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+}
+
+.text-wall-divider {
+  display: inline-block;
+  width: 3vw;
+}
+
+.text-char {
+  float: left;
+  width: 1.5vw;
+  height: 1.8vw;
+  font-size: 1.5vw;
+  text-align: center;
+}
+
+.text-char:hover {
+  background-color: #00C122;
+  color: rgb(36, 36, 36);
+}

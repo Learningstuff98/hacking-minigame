@@ -6,6 +6,7 @@ import Root from './routes/root';
 import ErrorPage from './routes/error-page';
 import AboutPage from './routes/about';
 import Header from './misc/header';
+import Game from './routes/game';
 
 const Main = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -19,7 +20,9 @@ const Main = () => {
           isLoading={isLoading}
           isAuthenticated={isAuthenticated}
         />
-        <Root/>
+        <Root
+          isAuthenticated={isAuthenticated}
+        />
       </div>,
       errorElement: <ErrorPage/>
     },
@@ -34,6 +37,20 @@ const Main = () => {
         <AboutPage/>
       </div>,
       errorElement: <ErrorPage/>
+    },
+    {
+      path: '/game',
+      element: <div>
+        <Header
+          user={user}
+          isLoading={isLoading}
+          isAuthenticated={isAuthenticated}
+        />
+        <Game
+          isLoading={isLoading}
+          isAuthenticated={isAuthenticated}
+        />
+      </div>
     }
   ]);
 
