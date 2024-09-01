@@ -89,6 +89,17 @@ body {
   position: absolute;
 }
 
+.memory-address-wall {
+  position: absolute;
+  display: inline-block;
+}
+
+.memory-address {
+  width: 1.5vw;
+  height: 1.8vw;
+  font-size: 1.5vw;
+}
+
 .text-wall-divider {
   display: inline-block;
   width: 3vw;

@@ -64,10 +64,30 @@ const Game = (props) => {
     return textWall;
   };
 
+  const memoryAddresses = () => {
+    let memoryAddresses = [];
+    for(let i = 0; i < 17; i++) {
+      memoryAddresses.push(
+        <div className="memory-address" key={i}>
+          {"0xF"}
+        </div>
+      );
+    }
+    return memoryAddresses;
+  };
+
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
+      <div className="memory-address-wall">
+        {memoryAddresses()}
+      </div>
+      <div className="text-wall-divider"></div>
       <div className="first-text-wall">
         {textWall(0, 203)}
+      </div>
+      <div className="text-wall-divider"></div>
+      <div className="memory-address-wall">
+        {memoryAddresses()}
       </div>
       <div className="text-wall-divider"></div>
       <div className="second-text-wall">
