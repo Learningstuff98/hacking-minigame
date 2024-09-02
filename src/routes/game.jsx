@@ -33,6 +33,27 @@ const Game = (props) => {
     ')'
   ]
 
+  // note to self: add more addresses
+  const memoryAddresses = [
+    '0xF964',
+    '0xF970',
+    '0xF97C',
+    '0xF988',
+    '0xF944',
+    '0xF9A0',
+    '0xF9AC',
+    '0xF9B8',
+    '0xF9C4',
+    '0xF9D0',
+    '0xF9DC',
+    '0xF9E8',
+    '0xF9F4',
+    '0xFA00',
+    '0xFA0D',
+    '0xFA18',
+    '0xFA24'
+  ]
+
   const getRandomIndex = (maxIndex) => {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     return Math.floor(Math.random() * maxIndex);
@@ -64,22 +85,34 @@ const Game = (props) => {
     return textWall;
   };
 
-  const memoryAddresses = () => {
-    let memoryAddresses = [];
-    for(let i = 0; i < 17; i++) {
-      memoryAddresses.push(
-        <div className="memory-address" key={i}>
-          {"0xF"}
+  const formatChars = (address) => {
+    let chars = [];
+    for(let i = 0; i <= 5; i++) {
+      chars.push(
+        <div className="address-char" key={i}>
+          {address[i]}
         </div>
       );
     }
-    return memoryAddresses;
+    return chars;
+  };
+
+  const renderMemoryAddresses = () => {
+    let memoryAddressWall = [];
+    for(let i = 0; i < 17; i++) {
+      memoryAddressWall.push(
+        <div key={i}>
+          {formatChars(memoryAddresses[i])}
+        </div>
+      );
+    }
+    return memoryAddressWall;
   };
 
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
       <div className="memory-address-wall">
-        {memoryAddresses()}
+        {renderMemoryAddresses()}
       </div>
       <div className="text-wall-divider"></div>
       <div className="first-text-wall">
@@ -87,7 +120,7 @@ const Game = (props) => {
       </div>
       <div className="text-wall-divider"></div>
       <div className="memory-address-wall">
-        {memoryAddresses()}
+        {renderMemoryAddresses()}
       </div>
       <div className="text-wall-divider"></div>
       <div className="second-text-wall">
