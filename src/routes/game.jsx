@@ -33,8 +33,7 @@ const Game = (props) => {
     ')'
   ]
 
-  // note to self: add more addresses
-  const memoryAddresses = [
+  const firstAddressWall = [
     '0xF964',
     '0xF970',
     '0xF97C',
@@ -52,6 +51,26 @@ const Game = (props) => {
     '0xFA0D',
     '0xFA18',
     '0xFA24'
+  ]
+
+  const secondAddressWall = [
+    '0xFA30',
+    '0xFA3C',
+    '0xFA48',
+    '0xFA54',
+    '0xFA60',
+    '0xFA6C',
+    '0xFA78',
+    '0xFA84',
+    '0xFA90',
+    '0xFA9c',
+    '0xFAA8',
+    '0xFAB4',
+    '0xFAC0',
+    '0xFACC',
+    '0xFAD8',
+    '0xFAE4',
+    '0xFAF0'
   ]
 
   const getRandomIndex = (maxIndex) => {
@@ -97,12 +116,12 @@ const Game = (props) => {
     return chars;
   };
 
-  const renderMemoryAddresses = () => {
+  const renderMemoryAddresses = (addressWall) => {
     let memoryAddressWall = [];
     for(let i = 0; i < 17; i++) {
       memoryAddressWall.push(
         <div key={i}>
-          {formatChars(memoryAddresses[i])}
+          {formatChars(addressWall[i])}
         </div>
       );
     }
@@ -112,7 +131,7 @@ const Game = (props) => {
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
       <div className="memory-address-wall">
-        {renderMemoryAddresses()}
+        {renderMemoryAddresses(firstAddressWall)}
       </div>
       <div className="text-wall-divider"></div>
       <div className="first-text-wall">
@@ -120,7 +139,7 @@ const Game = (props) => {
       </div>
       <div className="text-wall-divider"></div>
       <div className="memory-address-wall">
-        {renderMemoryAddresses()}
+        {renderMemoryAddresses(secondAddressWall)}
       </div>
       <div className="text-wall-divider"></div>
       <div className="second-text-wall">
