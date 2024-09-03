@@ -5,12 +5,12 @@ const Game = (props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(textChars.length < 408) {
+      if(textChars.length < 408 && !props.isLoading) {
         setTextChars(
           `${textChars}${possibleTextChars[getRandomIndex(15)]}`
         );
       }
-    }, 10);
+    }, 5);
     return () => clearInterval(interval);
   });
 
@@ -31,9 +31,9 @@ const Game = (props) => {
     '*',
     '(',
     ')'
-  ]
+  ];
 
-  const firstAddressWall = [
+  const firstAddressSet = [
     '0xF964',
     '0xF970',
     '0xF97C',
@@ -51,9 +51,9 @@ const Game = (props) => {
     '0xFA0D',
     '0xFA18',
     '0xFA24'
-  ]
+  ];
 
-  const secondAddressWall = [
+  const secondAddressSet = [
     '0xFA30',
     '0xFA3C',
     '0xFA48',
@@ -71,12 +71,52 @@ const Game = (props) => {
     '0xFAD8',
     '0xFAE4',
     '0xFAF0'
-  ]
+  ];
+
+  const renderThresholdsFirstAddressSet = [
+    0,
+    12,
+    24,
+    36,
+    48,
+    60,
+    72,
+    84,
+    96,
+    108,
+    120,
+    132,
+    144,
+    156,
+    168,
+    180,
+    192
+  ];
+
+  const renderThresholdsSecondAddressSet = [
+    204,
+    216,
+    228,
+    240,
+    252,
+    264,
+    278,
+    290,
+    302,
+    314,
+    326,
+    338,
+    350,
+    362,
+    374,
+    386,
+    398
+  ];
 
   const getRandomIndex = (maxIndex) => {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     return Math.floor(Math.random() * maxIndex);
-  }
+  };
 
   const textRow = (start, end) => {
     let row = [];
@@ -116,14 +156,16 @@ const Game = (props) => {
     return chars;
   };
 
-  const renderMemoryAddresses = (addressWall) => {
+  const addressWall = (addressSet, renderThresholdsAddressSet) => {
     let memoryAddressWall = [];
     for(let i = 0; i < 17; i++) {
-      memoryAddressWall.push(
-        <div key={i}>
-          {formatChars(addressWall[i])}
-        </div>
-      );
+      if(textChars.length > renderThresholdsAddressSet[i]) {
+        memoryAddressWall.push(
+          <div key={i}>
+            {formatChars(addressSet[i])}
+          </div>
+        );
+      }
     }
     return memoryAddressWall;
   };
@@ -131,7 +173,7 @@ const Game = (props) => {
   if(props.isAuthenticated) {
     return <div className="green game-screen-border">
       <div className="memory-address-wall">
-        {renderMemoryAddresses(firstAddressWall)}
+        {addressWall(firstAddressSet, renderThresholdsFirstAddressSet)}
       </div>
       <div className="text-wall-divider"></div>
       <div className="first-text-wall">
@@ -139,7 +181,7 @@ const Game = (props) => {
       </div>
       <div className="text-wall-divider"></div>
       <div className="memory-address-wall">
-        {renderMemoryAddresses(secondAddressWall)}
+        {addressWall(secondAddressSet, renderThresholdsSecondAddressSet)}
       </div>
       <div className="text-wall-divider"></div>
       <div className="second-text-wall">
@@ -151,6 +193,6 @@ const Game = (props) => {
       You must be logged in to play.
     </h2>
   }
-}
+};
 
 export default Game;
