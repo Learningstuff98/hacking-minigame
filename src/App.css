@@ -78,7 +78,7 @@ body {
   width: 80vw;
   margin: auto;
   padding: 1vw;
-  background-image: url("src/assets/game-screen-background.png");
+  background-image: url(assets/game-screen-background.png);
 }
 
 .first-text-wall {
