@@ -73,7 +73,7 @@ body {
   border-color: #00C122;
   border-radius: 3vw;
   height: 40vw;
-  width: 70vw;
+  width: 80vw;
   margin: auto;
   padding: 1vw;
 }
@@ -89,9 +89,22 @@ body {
   position: absolute;
 }
 
+.memory-address-wall {
+  position: absolute;
+  display: inline-block;
+}
+
 .text-wall-divider {
   display: inline-block;
-  width: 3vw;
+  width: 7vw;
+}
+
+.address-char {
+  float: left;
+  width: 1vw;
+  height: 1.8vw;
+  font-size: 1.5vw;
+  text-align: center;
 }
 
 .text-char {
