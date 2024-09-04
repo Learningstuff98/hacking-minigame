@@ -20,20 +20,20 @@ const Header = (props) => {
 
   const dropDownMenu = () => {
     if(props.isAuthenticated && showDropDownUserMenu) {
-      return <div className="green drop-down-menu-box">
+      return <h3 className="green drop-down-menu-box">
         {props.user.name}
         <LogoutButton/>
-      </div>
+      </h3>
     }
   }
 
   return <div>
-    <h3 className="green header">
+    <h2 className="green header">
       <Link className="green" to={'/'}>Home page</Link>
       <div className="header-profile-link">
         {handleUserDisplayInfo()}
       </div>
-    </h3>
+    </h2>
     {dropDownMenu()}
   </div>  
 }

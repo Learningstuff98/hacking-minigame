@@ -171,7 +171,7 @@ const Game = (props) => {
   };
 
   if(props.isAuthenticated) {
-    return <div className="green game-screen-border">
+    return <div className="green game-screen">
       <div className="memory-address-wall">
         {addressWall(firstAddressSet, renderThresholdsFirstAddressSet)}
       </div>
