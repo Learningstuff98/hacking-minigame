@@ -5,14 +5,28 @@ const Game = (props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(textChars.length < 408 && !props.isLoading) {
-        setTextChars(
-          `${textChars}${possibleTextChars[getRandomIndex(15)]}`
-        );
+      if(!props.isLoading) {
+        for(let i = 0; i < 408 && textChars.length < 408; i++) {
+          if(textChars.length === 16) {
+            setTextChars(
+              `${textChars}${possibleWords[0]}`
+            );
+          } else {
+            setTextChars(
+              `${textChars}${possibleTextChars[getRandomIndex(15)]}`
+            );
+          }
+        }
       }
     }, 5);
     return () => clearInterval(interval);
   });
+
+  const possibleWords = [
+    'deck',
+    'boot',
+    'look'
+  ];
 
   const possibleTextChars = [
     '<',
@@ -120,14 +134,36 @@ const Game = (props) => {
 
   const textRow = (start, end) => {
     let row = [];
-    for(let i = start; i < end; i++) {
+    let i = start;
+    while(i < end) {
       if(textChars[i]) {
-        row.push(
-          <div className="text-char" key={i}>
-            {textChars[i]}
-          </div>
-        );
+        if(!possibleTextChars.includes(textChars[i])) {
+          row.push(
+            <div className="word">
+              <div className="word-char">
+                {textChars[i]}
+              </div>
+              <div className="word-char">
+                {textChars[i + 1]}
+              </div>
+              <div className="word-char">
+                {textChars[i + 2]}
+              </div>
+              <div className="word-char">
+                {textChars[i + 3]}
+              </div>
+            </div>
+          );
+          i += 3;
+        } else {
+          row.push(
+            <div className="text-char" key={i}>
+              {textChars[i]}
+            </div>
+          );
+        }
       }
+      i++;
     }
     return row;
   };
