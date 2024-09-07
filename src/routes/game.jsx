@@ -7,7 +7,7 @@ const Game = (props) => {
     const interval = setInterval(() => {
       if(!props.isLoading) {
         for(let i = 0; i < 408 && textChars.length < 408; i++) {
-          if(textChars.length === 16) {
+          if(textChars.length === 22) {
             setTextChars(
               `${textChars}${possibleWords[0]}`
             );
@@ -137,7 +137,7 @@ const Game = (props) => {
     let i = start;
     while(i < end) {
       if(textChars[i]) {
-        if(!possibleTextChars.includes(textChars[i])) {
+        if(!possibleTextChars.includes(textChars[i]) && !possibleTextChars.includes(textChars[i + 1]) && !possibleTextChars.includes(textChars[i + 2]) && !possibleTextChars.includes(textChars[i + 3])) {
           row.push(
             <div className="word">
               <div className="word-char">
@@ -155,7 +155,7 @@ const Game = (props) => {
             </div>
           );
           i += 3;
-        } else {
+        } else if(possibleTextChars.includes(textChars[i])) {
           row.push(
             <div className="text-char" key={i}>
               {textChars[i]}
