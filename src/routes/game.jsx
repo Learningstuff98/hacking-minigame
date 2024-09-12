@@ -132,30 +132,44 @@ const Game = (props) => {
     return Math.floor(Math.random() * maxIndex);
   };
 
+  const isWord = (wordStart, wordEnd) => {
+    for(let i = wordStart; i <= wordEnd; i++) {
+      if(possibleTextChars.includes(textChars[i])) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const renderWord = (wordStart, wordEnd) => {
+    let word = [];
+    for(let i = wordStart; i <= wordEnd; i++) {
+      word.push(
+        <div className="word-char" key={i}>
+          {textChars[i]}
+        </div>
+      );
+    }
+    return word;
+  };
+
+  const isSpecialChar = (index) => {
+    return possibleTextChars.includes(textChars[index]);
+  };
+
   const textRow = (start, end) => {
     let row = [];
     let i = start;
     while(i < end) {
       if(textChars[i]) {
-        if(!possibleTextChars.includes(textChars[i]) && !possibleTextChars.includes(textChars[i + 1]) && !possibleTextChars.includes(textChars[i + 2]) && !possibleTextChars.includes(textChars[i + 3])) {
+        if(isWord(i, i + 3)) {
           row.push(
-            <div className="word">
-              <div className="word-char">
-                {textChars[i]}
-              </div>
-              <div className="word-char">
-                {textChars[i + 1]}
-              </div>
-              <div className="word-char">
-                {textChars[i + 2]}
-              </div>
-              <div className="word-char">
-                {textChars[i + 3]}
-              </div>
+            <div className="word" key={i}>
+              {renderWord(i, i + 3)}
             </div>
           );
           i += 3;
-        } else if(possibleTextChars.includes(textChars[i])) {
+        } else if(isSpecialChar(i)) {
           row.push(
             <div className="text-char" key={i}>
               {textChars[i]}
