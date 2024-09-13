@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react';
 
 const Game = (props) => {
   const [textChars, setTextChars] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if(!props.isLoading) {
         for(let i = 0; i < 408 && textChars.length < 408; i++) {
-          if(textChars.length === 22) {
+          if(textChars.length === wordPlacements[wordIndex]) {
             setTextChars(
-              `${textChars}${possibleWords[0]}`
+              `${textChars}${possibleWords[wordIndex]}`
             );
+            setWordIndex(wordIndex + 1);
           } else {
             setTextChars(
               `${textChars}${possibleTextChars[getRandomIndex(15)]}`
@@ -22,10 +24,22 @@ const Game = (props) => {
     return () => clearInterval(interval);
   });
 
+  const wordPlacements = [
+    22,
+    76,
+    191,
+    248,
+    340,
+    404
+  ];
+
   const possibleWords = [
     'deck',
     'boot',
-    'look'
+    'look',
+    'peer',
+    'copy',
+    'four'
   ];
 
   const possibleTextChars = [
